@@ -5,15 +5,45 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Spotify</title>
 	</head>
 	<body>
-		<slot />
+
+		<div id="app" class="relative h-screen p-2 gap-2 flex items-stretch"> 
+			<aside class="[grid-area:aside] flex-col flex overflow-y-auto bg-blue-200 p-2"> 
+			  Aside
+			</aside>
+		  
+			<main class="[grid-area:main] bg-rose-200 p-2">
+			  main
+			</main>
+		  
+			<footer class="[grid-area:player] min-h-[100px] bg-amber-400 p-2">
+			  player
+			</footer>
+		  </div>
+		  
+
 	</body>
 </html>
 
 <style>
-	html,
+	#app {
+		display: grid;
+		grid-template-areas: 
+		"aside main main"
+		"player player player";
+		grid-template-columns: 350px 1fr;
+		grid-template-rows: 1fr auto;
+	}
+
+</style>
+
+
+<style>
+	html{
+		background: #000 ;
+	},
 	body {
 		margin: 0;
 		width: 100%;
