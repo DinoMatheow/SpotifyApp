@@ -1,3 +1,9 @@
+---
+import "../styles/global.css";
+import AsideMenu from '../components/AsideMenu.astro';
+
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -10,15 +16,18 @@
 	<body>
 
 		<div id="app" class="relative h-screen p-2 gap-2 flex items-stretch"> 
-			<aside class="[grid-area:aside] flex-col flex overflow-y-auto bg-blue-200 p-2"> 
-			  Aside
+			<aside class="[grid-area:aside] flex-col flex overflow-y-auto  p-2"> 
+			  
+				<AsideMenu />
+
+				
 			</aside>
 		  
-			<main class="[grid-area:main] bg-rose-200 p-2">
+			<main class="[grid-area:main] rounded-lg  bg-zinc-900 overflow-y-auto">
 			  main
 			</main>
 		  
-			<footer class="[grid-area:player] min-h-[100px] bg-amber-400 p-2">
+			<footer class="[grid-area:player]  min-h-[100px]">
 			  player
 			</footer>
 		  </div>
