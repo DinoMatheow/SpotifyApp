@@ -4,6 +4,8 @@ import SideMenu from "./SideMenu.astro";
 import HomeIcon from "../icons/Home.astro";
 import SearchIcon from "../icons/Search.astro";
 import LibraryIcon from "../icons/Library.astro"
+import { playlists } from "../lib/data";
+import SideMenuCard from "../components/SideMenuCard.astro"
 ---
 
 
@@ -20,6 +22,9 @@ import LibraryIcon from "../icons/Library.astro"
                 Search
             </SideMenu>
 
+        
+
+
         </ul>
 
     </div>
@@ -30,6 +35,9 @@ import LibraryIcon from "../icons/Library.astro"
                 <LibraryIcon />
                 My Library
             </SideMenu>
+            {
+                playlists.map(playlist => <SideMenuCard playlist={playlist}/> )
+            }
 
         </ul>
 
