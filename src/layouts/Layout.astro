@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import AsideMenu from '../components/AsideMenu.astro';
+import { ViewTransitions } from "astro:transitions";
 
 ---
 
@@ -12,6 +13,7 @@ import AsideMenu from '../components/AsideMenu.astro';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Spotify</title>
+		<ViewTransitions fallback="none" />
 	</head>
 	<body>
 
@@ -99,3 +101,4 @@ import AsideMenu from '../components/AsideMenu.astro';
 
 
 </style>
+	

@@ -8,7 +8,9 @@ export default defineConfig({
   devToolbar: {
       enabled: false
     },
-
+  experimental: {
+    // viewTransitions: true
+  },
   vite: {
     plugins: [tailwindcss()]
   },
