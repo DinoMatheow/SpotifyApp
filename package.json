@@ -9,8 +9,27 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@analogjs/astro-angular": "^1.20.2",
+    "@angular-devkit/build-angular": "^20.2.2",
+    "@angular/animations": "^20.2.4",
+    "@angular/common": "^20.2.4",
+    "@angular/compiler": "^20.2.4",
+    "@angular/compiler-cli": "^20.2.4",
+    "@angular/core": "^20.2.4",
+    "@angular/language-service": "^20.2.4",
+    "@angular/platform-browser": "^20.2.4",
+    "@angular/platform-browser-dynamic": "^20.2.4",
+    "@angular/platform-server": "^20.2.4",
+    "@astrojs/react": "^4.3.0",
     "@tailwindcss/vite": "^4.1.12",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "astro": "^5.13.5",
-    "tailwindcss": "^4.1.12"
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "rxjs": "^7.8.2",
+    "tailwindcss": "^4.1.12",
+    "tslib": "^2.8.1",
+    "zone.js": "^0.15.1"
   }
 }
