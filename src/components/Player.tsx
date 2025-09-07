@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { usePlayerStore } from "../store/playerStore";
 
 // Componentes de iconos internos
-const PauseIcon = () => {
+export const PauseIcon = () => {
   return (
-    <svg role="img" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" className="text-black h-6 w-6">
+    <svg role="img" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor" 
+    className="text-black h-6 w-6">
       <path
         d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"
       ></path>
@@ -11,7 +13,7 @@ const PauseIcon = () => {
   );
 };
 
-const PlayIcon = () => {
+export const PlayIcon = () => {
   return (
     <svg viewBox="0 0 24 24" className="h-6 w-6 text-black" fill="currentColor">
       <path fill="currentColor" d="M8 5.14v14l11-7-11-7z"></path>
@@ -22,8 +24,8 @@ const PlayIcon = () => {
 
 
 export const Player = () => {
-
-    const [isPlaying, setIsPlaying] = useState(false);
+    const { isPlaying, setIsPlaying } = usePlayerStore(state => state);
+    
     const [currentSong, setCurrentSong] = useState(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
