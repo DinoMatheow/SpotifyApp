@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import AsideMenu from '../components/AsideMenu.astro';
 import { ViewTransitions } from "astro:transitions";
+import { Player } from "../components/Player";
 
 ---
 
@@ -27,7 +28,7 @@ import { ViewTransitions } from "astro:transitions";
 			</main>
 		  
 			<footer class="[grid-area:player]  min-h-[100px] text-white">
-			  PLAYER
+			  <Player />
 			</footer>
 		  </div>
 		  
