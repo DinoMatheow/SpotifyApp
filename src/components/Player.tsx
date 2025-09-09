@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { usePlayerStore } from "../store/playerStore";
-
+import { Slider } from "@/components/ui/slider";
 
 interface CurrentSongsProps {
     image?: string;
@@ -53,7 +53,7 @@ export const Player = () => {
     const { isPlaying, setIsPlaying, currentMusic} = usePlayerStore(state => state);
 
     const audioRef = useRef<HTMLAudioElement | null>(null);
-
+    const volumenRef = useRef(1);
 
     useEffect(() => {
     if (!audioRef.current) return;
@@ -66,9 +66,9 @@ export const Player = () => {
     if (song && playlist) {
       const track = String(song.id).padStart(2, "0");
       const src = `/music/${playlist.id}/${track}.mp3`;
-      console.log("Loading audio:", src);
   
       audioRef.current!.src = src;
+      audioRef.current!.volume = volumenRef.current
   
       if (isPlaying) {
         audioRef.current
@@ -103,8 +103,20 @@ export const Player = () => {
                 </button>
                 <audio ref={audioRef} />
             </div>
-            <div>
-                Volumen
+            <div className="grid place-content-center" >
+                <Slider 
+                defaultValue={[100]}
+                max={100}
+                min={0}
+                className="w-[95px]"
+                onValueChange={(value)=> {
+
+                    const [newVolume] = value
+                    const volumenValue = newVolume / 100
+                    volumenRef.current = volumenValue
+                    audioRef.current!.volume = newVolume / 100
+                }}
+                />
             </div>
         </div>
     )
