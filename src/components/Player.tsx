@@ -1,6 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 import { usePlayerStore } from "../store/playerStore";
 
+
+interface CurrentSongsProps {
+    image?: string;
+    title?: string;
+    artists?: string[];
+};
+
+const CurrentSongs = ({image, title, artists}: CurrentSongsProps )=>{
+    return (
+        <div className="flex items-center gap-5 relative overflow-hidden">
+            <picture className="w-16 h-16 bg-zinc-800 rounded-md shadow-lg overflow-hidden">
+                <img src={ image } alt={ title } />
+            </picture>
+
+                <div className="flex flex-col">
+
+                <h3 className="font-semibold text-sm block">{ title }</h3>
+                <span> { artists?.join(', ') ?? 'Unknown Artist' } </span>
+                </div>
+
+        </div>
+
+
+    )
+}
+ 
 // Componentes de iconos internos
 export const PauseIcon = () => {
   return (
@@ -24,26 +50,37 @@ export const PlayIcon = () => {
 
 
 export const Player = () => {
-    const { isPlaying, setIsPlaying } = usePlayerStore(state => state);
-    
-    const [currentSong, setCurrentSong] = useState(null);
+    const { isPlaying, setIsPlaying, currentMusic} = usePlayerStore(state => state);
+
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
+
     useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.src = `/music/1/01.mp3`;
-        }
-    }, [])
+    if (!audioRef.current) return;
+
+    isPlaying ?  audioRef.current.play() : audioRef.current.pause();
+  }, [isPlaying]);
+  
+  useEffect(() => {
+    const { song, playlist } = currentMusic;
+    if (song && playlist) {
+      const track = String(song.id).padStart(2, "0");
+      const src = `/music/${playlist.id}/${track}.mp3`;
+      console.log("Loading audio:", src);
+  
+      audioRef.current!.src = src;
+  
+      if (isPlaying) {
+        audioRef.current
+          ?.play()
+      }
+    }
+  }, [currentMusic.song, currentMusic.playlist]); 
+  
     
 
     const handleClick = () => {
-        if (!audioRef.current) return; // seguridad por si aún es null
-    
-        if (isPlaying) {
-          audioRef.current.pause();
-        } else {
-          audioRef.current.play();
-        }
+       
     
         setIsPlaying(!isPlaying);
       };
@@ -51,7 +88,11 @@ export const Player = () => {
     return (
         <div className="flex flex-row justify-between w-full px-4 z-50">
             <div>
-                CurrentSong...
+                <CurrentSongs 
+                image={currentMusic.playlist?.cover}
+                title={currentMusic.song?.title ?? currentMusic.playlist?.title}
+                artists={currentMusic.playlist?.artists }
+                />
             </div>
             <div className="grid place-content-center gap-4 flex-1">
                 <div className="flex justify-center" />

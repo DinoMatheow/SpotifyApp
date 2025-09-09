@@ -1,7 +1,8 @@
 import { create } from "zustand";
+import type { Playlist } from "../lib/data";
 
 interface CurrentMusic {
-    playlist: any | null;
+    playlist: Playlist | null;
     song: any | null;
     songs: any[];
 };
