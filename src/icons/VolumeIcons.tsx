@@ -1,3 +1,7 @@
+
+
+
+
 export const VolumeSilenced = () => (
   <svg fill="currentColor" role="presentation" height="16" width="16" aria-hidden="true" aria-label="Volumen apagado"
        viewBox="0 0 16 16">
@@ -36,3 +40,14 @@ export const VolumeFull = () => (
     <path d="M11.5 13.614a5.752 5.752 0 0 0 0-11.228v1.55a4.252 4.252 0 0 1 0 8.127v1.55z"></path>
   </svg>
 )
+
+type VolumeIconProps = {
+  volume: number;
+};
+
+export const VolumeIcon = ({ volume }: VolumeIconProps) => {
+  if (volume === 0) return <VolumeSilenced />;
+  if (volume < 50) return <VolumeLow />;
+  if (volume < 80) return <VolumeMedium />;
+  return <VolumeFull />;
+};

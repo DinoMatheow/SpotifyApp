@@ -1,0 +1,44 @@
+---
+import { TimeIcon } from "@/icons/MusicTimeIcon";
+import { type Song } from "@/lib/data";
+
+interface Props {
+    songs: Song[];
+
+};
+
+const { songs } = Astro.props
+---
+
+<table class="table-auto text-left min-w-full divide-y-2 divide-gray-500/50">
+    <thead>
+        <tr class="text-gray-300 text-sm">
+            <th class="px-4 py-2">Title</th>
+            <th class="px-4 py-2">Artist</th>
+            <th class="px-4 py-2">Album</th>
+            <th class="px-4 py-2"> <TimeIcon /> </th>
+        </tr>
+    </thead>
+    <tbody>
+        { songs.map((song, index )=> (
+            <tr class="text-gray-300 text-sm">
+                <td class="px-4 py-2">{index + 1}</td>
+                <td class="px-4 py-2 flex gap-4">
+                    <picture class="">
+                        <img src={ song.image } alt={ song.title }
+                        class="w-10 h-10 rounded-md"
+                        >
+                    </picture>
+                    <div class="flex flex-col">
+                    <h3>{ song.title }</h3>
+                    <span>{song.artists.join(', ')}</span>
+                    </div>
+                </td>
+                <td class="px-4 py-2">{song.album}</td>
+                <td class="px-4 py-2">{song.duration}</td>
+
+            </tr> ))}
+
+    </tbody>
+
+</table>
