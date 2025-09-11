@@ -10,27 +10,27 @@ interface Props {
 const { songs } = Astro.props
 ---
 
-<table class="table-auto text-left min-w-full divide-y-2 divide-gray-500/50">
+<table class="table-auto text-left min-w-full divide-y-1 divide-gray-500/50">
     <thead>
-        <tr class="text-gray-300 text-sm">
+        <tr class="text-gray-300 text-sm font-light">
+            <th class="px-4 py-2">#</th>
             <th class="px-4 py-2">Title</th>
-            <th class="px-4 py-2">Artist</th>
             <th class="px-4 py-2">Album</th>
             <th class="px-4 py-2"> <TimeIcon /> </th>
         </tr>
     </thead>
     <tbody>
         { songs.map((song, index )=> (
-            <tr class="text-gray-300 text-sm">
-                <td class="px-4 py-2">{index + 1}</td>
+            <tr class="text-gray-300 text-sm font-light hover:bg-white/10 rounded-lg overflow-hidden">
+                <td class="px-4 py-2 rounded-tl-lg rounded-bl-lg w-7">{index + 1}</td>
                 <td class="px-4 py-2 flex gap-4">
                     <picture class="">
                         <img src={ song.image } alt={ song.title }
-                        class="w-10 h-10 rounded-md"
+                        class="w-11 h-11 "
                         >
                     </picture>
                     <div class="flex flex-col">
-                    <h3>{ song.title }</h3>
+                    <h3 class="text-white text-base font-normal">{ song.title }</h3>
                     <span>{song.artists.join(', ')}</span>
                     </div>
                 </td>

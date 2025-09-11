@@ -1,7 +1,7 @@
 ---
 import { type Playlist } from "../lib/data";
 // import { CardPlayButtom } from "../components/CardPlayButtom";
-import { CardPlayButtom } from "../components/CardPlayButtom"
+import { CardPlayButtom } from "./react/CardPlayButtom"
 interface Props{
     playlist: Playlist;
 }
@@ -17,7 +17,7 @@ class="group relative hover:bg-zinc-800 shadow-lg hover:shadow-xl bg-zinc-500/30
 
     <div class="absolute right-4 bottom-20 translate-y-4 transition-all duration-500 opacity-0
     group-hover:opacity-100 z-10">
-  <CardPlayButtom id={id} client:visible />
+  <CardPlayButtom id={id} client:visible size="small" />
     </div>
 
 <a href={`/playlist/${id}`}

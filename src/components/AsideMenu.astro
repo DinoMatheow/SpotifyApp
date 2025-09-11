@@ -9,38 +9,17 @@ import SideMenuCard from "../components/SideMenuCard.astro"
 ---
 
 
-<nav class="flex flex-col flex-1 gap-2">
-    <div class="bg-zinc-900 rounded-lg p-2">
-        <ul>
-            <SideMenu href="/">
-                <HomeIcon />
-                Home
-            </SideMenu>
-
-            <SideMenu href="/#">
-                <SearchIcon />
-                Search
-            </SideMenu>
-
-        
-
-
-        </ul>
-
-    </div>
-
+<nav class="flex flex-col flex-1  h-full">
     <div class="bg-zinc-900 rounded-lg p-2 flex-1">
-        <ul>
-            <SideMenu href="/#">
-                <LibraryIcon />
-                My Library
-            </SideMenu>
-            {
-                playlists.map(playlist => <SideMenuCard playlist={playlist}/> )
-            }
-
-        </ul>
-
+      <ul class="flex flex-col gap-2 h-full overflow-y-auto">
+        <SideMenu href="/#">
+          <LibraryIcon />
+          My Library
+        </SideMenu>
+  
+        {
+          playlists.map(playlist => <SideMenuCard playlist={playlist}/> )
+        }
+      </ul>
     </div>
-</nav>
-</nav>
+  </nav>

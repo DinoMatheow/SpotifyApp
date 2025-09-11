@@ -2,7 +2,8 @@
 import "../styles/global.css";
 import AsideMenu from '../components/AsideMenu.astro';
 import { ViewTransitions } from "astro:transitions";
-import { Player } from "../components/Player";
+import { Player } from "../components/react/Player";
+import NavbarMenu from "@/components/astro/NavbarMenu.astro";
 
 ---
 
@@ -18,8 +19,11 @@ import { Player } from "../components/Player";
 	</head>
 	<body>
 
-		<div id="app" class="relative h-screen p-2 gap-2 flex items-stretch"> 
-			<aside class="[grid-area:aside] flex-col flex overflow-y-auto  p-2"> 
+		<div id="app" class="relative h-screen p-2 gap-2 flex ">
+			<header class="[grid-area:navbar]  ">
+				<NavbarMenu />
+			</header> 
+			<aside class="[grid-area:aside] flex flex-col overflow-y-auto bg-zinc-900p-2"> 
 				<AsideMenu />
 			</aside>
 		  
@@ -39,11 +43,12 @@ import { Player } from "../components/Player";
 <style>
 	#app {
 		display: grid;
-		grid-template-areas: 
+		grid-template-areas:
+		"navbar navbar navbar" 
 		"aside main main"
 		"player player player";
 		grid-template-columns: 350px 1fr;
-		grid-template-rows: 1fr auto;
+		grid-template-rows: auto 1fr 88px;
 	}
 
 </style>
