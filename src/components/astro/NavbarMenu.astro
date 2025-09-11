@@ -1,8 +1,9 @@
 ---
 import SideMenu from "../SideMenu.astro";
 import HomeIcon from "@/icons/Home.astro";
-import SearchIcon from "@/icons/Search.astro";
 import Spotify from "@/icons/Spotify.astro";
+import { SearchBarComponent } from "../angular/SearchBar.component";
+
 ---
 
 <nav class="flex flex-row items-center w-full gap-2 px-2 py-0 h-12">
@@ -23,18 +24,7 @@ import Spotify from "@/icons/Spotify.astro";
          </div>
        
          <!-- Search -->
-         <div class="flex flex-grow items-center gap-2 bg-zinc-900 rounded-full px-3 py-2 
-            focus-within:border focus-within:border-white  hover:bg-zinc-800 border-[0] transition-all duration-200">
-            <!-- Icono -->
-            <SearchIcon class="w-5 h-5 text-zinc-400 transition-colors duration-200 focus-within:text-white" />
-          
-            <!-- Input -->
-            <input 
-              type="text" 
-              placeholder="What do you want to play?    "
-              class="bg-transparent outline-none text-1xl text-white placeholder-zinc-500 flex-1"
-            />
-          </div>
+        <SearchBarComponent  client:load />
 
 
      </div>
