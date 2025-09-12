@@ -4,15 +4,26 @@ import SideMenu from "./SideMenu.astro";
 import LibraryIcon from "../icons/Library.astro"
 import { playlists } from "../lib/data";
 import SideMenuCard from "../components/SideMenuCard.astro"
+import More from "@/icons/More.astro";
+import Expand from "@/icons/Expand.astro";
 ---
 
 
 <nav class="flex flex-col flex-1 h-full">
     <div class="bg-zinc-900 rounded-lg p-2 flex-1">
-      <ul class="flex flex-col gap-2 h-full overflow-y-auto">
+      <div class="flex flex-row  gap-3 items-center">
+        <LibraryIcon />
+        <h3 class="text-white font-bold" >Your Library</h3>
+        <button class="flex ml-auto items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold px-3 py-1.5 rounded-2xl text-sm transition">
+          <More />  
+          Create
+        </button>
+        <button class="flex  bg-zinc-900 rounded-2xl px-2.5 py-2.5 hover:bg-zinc-800">
+          <Expand />
+        </button>
+      </div>
+      <ul class="flex flex-col gap-0.5 h-full overflow-y-auto">
         <SideMenu href="/#">
-          <LibraryIcon />
-          My Library
         </SideMenu>
   
         {

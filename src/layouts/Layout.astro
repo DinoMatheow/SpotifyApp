@@ -19,22 +19,21 @@ import NavbarMenu from "@/components/astro/NavbarMenu.astro";
 	</head>
 	<body>
 
-		<div id="app" class="relative h-screen p-2 gap-2 flex ">
-			<header class="[grid-area:navbar]  ">
-				<NavbarMenu />
-			</header> 
-			<aside class="[grid-area:aside] flex flex-col overflow-y-auto rounded-xl bg-zinc-900 p-2 "> 
-				<AsideMenu />
+		<div id="app" class="relative h-screen p-2 gap-2">
+			<header class="[grid-area:navbar]">
+			  <NavbarMenu />
+			</header>
+			<aside class="[grid-area:aside] flex flex-col overflow-y-auto rounded-xl bg-zinc-900 p-2">
+			  <AsideMenu />
 			</aside>
-		  
-			<main class="[grid-area:main] rounded-lg  bg-zinc-900 overflow-y-auto">
+			<main class="[grid-area:main] rounded-lg bg-zinc-900 overflow-y-auto">
 			  <slot />
 			</main>
-		  
-			<footer class="[grid-area:player] h-[88px] text-white">
-			  <Player client:load  transition:name="media-player" transition:persist/>
+			<footer class="[grid-area:player] h-[88px] relative z-[9999] ">
+			  <Player client:load transition:name="media-player" transition:persist />
 			</footer>
 		  </div>
+		  
 		  
 
 	</body>
@@ -42,14 +41,14 @@ import NavbarMenu from "@/components/astro/NavbarMenu.astro";
 
 <style>
 	#app {
-		display: grid;
-		grid-template-areas:
-		"navbar navbar navbar" 
-		"aside main main"
-		"player player player";
-		grid-template-columns: 350px 1fr;
-		grid-template-rows: auto 1fr 88px;
-	}
+  display: grid;
+  grid-template-areas:
+    "navbar navbar"
+    "aside main"
+    "player player";
+  grid-template-columns: 420px 1fr;
+  grid-template-rows: auto 1fr auto; 
+}
 
 </style>
 
