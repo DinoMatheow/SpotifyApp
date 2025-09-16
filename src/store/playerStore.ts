@@ -1,13 +1,13 @@
 import { create } from "zustand";
-import type { Playlist } from "../lib/data";
+import type { Playlist, Song } from "../lib/data";
 
-interface CurrentMusic {
+export interface CurrentMusic {
     playlist: Playlist | null;
-    song: any | null;
-    songs: any[];
+    song: Song | null;
+    songs: Song[];
 };
 
-    interface PlayerState {
+  export  interface PlayerState {
         isPlaying: boolean;
         currentMusic: CurrentMusic;
         volumen: number;

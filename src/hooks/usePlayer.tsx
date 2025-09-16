@@ -1,12 +1,15 @@
 import { usePlayerStore } from "@/store/playerStore";
 import { useEffect, useRef } from "react";
+import { useCurrentMusic } from "./useCurrentMusic";
  
   
 export const usePlayer = () => {
-    const { isPlaying, setIsPlaying, currentMusic, volumen} = usePlayerStore(state => state);
+    const { isPlaying, setIsPlaying, currentMusic, volumen, setCurrentMusic} = usePlayerStore(state => state);
 
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const volumenRef = useRef(1);
+  const {getNextSong} = useCurrentMusic(currentMusic)
+
 
     useEffect(() => {
     if (!audioRef.current) return;
@@ -45,6 +48,19 @@ export const usePlayer = () => {
         setIsPlaying(!isPlaying);
       };
 
+
+      const play = () => {
+        audioRef.current?.play()
+          .catch((e) => console.log('error playing: ', e))
+      }
+    
+      function onNextSong() {
+        const nextSong = getNextSong();
+        if (nextSong) {
+          setCurrentMusic({...currentMusic, song: nextSong});
+        }
+      }
+
       
     return {
         isPlaying,
@@ -52,6 +68,8 @@ export const usePlayer = () => {
         audioRef,
         // function 
         handleClick,
+        play,
+        onNextSong,
     }
 
 }

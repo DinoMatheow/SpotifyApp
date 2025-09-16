@@ -15,7 +15,7 @@ export const CurrentSongs = ({image, title, artists}: CurrentSongsProps )=>{
                 <div className="flex flex-col">
 
                 <h3 className="font-semibold text-sm block">{ title }</h3>
-                <span> { artists?.join(', ') ?? 'Unknown Artist' } </span>
+                <span class="text-xs text-gray-400"> { artists?.join(', ') ?? 'Unknown Artist' } </span>
                 </div>
 
         </div>

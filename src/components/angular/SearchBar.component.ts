@@ -34,6 +34,7 @@ import { ExploreIconComponent } from '@/icons/Explore.component';
         <div class="w-px h-6 bg-gray-400"></div>
         <ExploreIcon />
       </div>
+
   </div>
   
 
@@ -107,6 +108,8 @@ export class SearchBarComponent  {
     selectItems(item: Playlist) {
       this.query.set(item.title);
       this.filtered.set([]);
+
+      window.location.href = `/playlist/${encodeURIComponent(item.id)}`;
     }
     
 }
