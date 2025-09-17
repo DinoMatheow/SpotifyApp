@@ -11,13 +11,13 @@ const  { id } = Astro.params;
 const playlist = allPlaylists.find((playlist) => playlist.id === id);
 const playListsSongs = songs.filter((song) => song.albumId === playlist?.albumId);
 
-// export function getStaticPaths(){
-//   return allPlaylists.map((playlist)=>({
-//     params:{
-//       id:playlist.id
-//     }
-//   }))
-// }
+export function getStaticPaths(){
+  return allPlaylists.map((playlist)=>({
+    params:{
+      id:playlist.id
+    }
+  }))
+}
 
 
 
@@ -66,7 +66,7 @@ const playListsSongs = songs.filter((song) => song.albumId === playlist?.albumId
         </div>
       </header>
       <div class="pl-8 pt-6">
-        <CardPlayButtom client:load id={id} size="large"/>
+        <CardPlayButtom client:load playlist={playlist} songs={playListsSongs} size="large" />
         </div>
 
     <div class="relative z-10 px-6 pt-10">

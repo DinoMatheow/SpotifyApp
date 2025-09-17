@@ -1,4 +1,5 @@
 export function getPlayListInfoById(playListId: string) {
-  return fetch(`/api/get-info-playlist.json?id=${playListId}`)
-    .then(res => res.json());
+  return fetch('/get-info-playlist.json')
+    .then(res => res.json())
+    .then(data => data[playListId]); // Devuelve solo la playlist y sus canciones
 }

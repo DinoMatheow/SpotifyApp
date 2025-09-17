@@ -1,38 +1,39 @@
-
-import {  PlayIcon } from '../../icons/PlayIcon';
+import { PlayIcon } from '../../icons/PlayIcon';
 import { PauseIcon } from '@/icons/PauseIcon';
 import { usePlayerStore } from '../../store/playerStore';
+import type { Playlist, Song } from '../../lib/data';
 
-export const CardPlayButtom = ({id, size = 'small'}: {id: string, size: string}) => {
+interface CardPlayButtomProps {
+  playlist: Playlist;
+  songs: Song[];
+  size?: 'small' | 'large';
+}
 
-    const { currentMusic, setCurrentMusic, isPlaying, setIsPlaying }  = usePlayerStore(state => state)
-    
-    const isPlayingPlaylist = isPlaying && currentMusic.playlist?.id === id;
-    
-    const handleClick = () => {
-        if(isPlayingPlaylist){
-            setIsPlaying(false)
-            return
-        }
-        fetch(`/api/get-info-playlist.json?id=${id}`)
-        .then(res=> res.json())
-        .then(data =>{
-         const { songs, playlist } = data
-         setIsPlaying(true);
-         setCurrentMusic( {songs, playlist, song: songs[0]} )
+export const CardPlayButtom = ({ playlist, songs, size = 'small' }: CardPlayButtomProps) => {
+  const { currentMusic, setCurrentMusic, isPlaying, setIsPlaying } = usePlayerStore(state => state);
 
-         console.log({playlist, songs})
-        })
-        
-    };
+  const isPlayingPlaylist = isPlaying && currentMusic.playlist?.id === playlist.id;
 
-    
-     const iconsClassName = size === 'small' ? 'w-5 h-5' : 'w-7 h-7';
+  const handleClick = () => {
+    if (isPlayingPlaylist) {
+      setIsPlaying(false);
+      return;
+    }
+
+    setCurrentMusic({ songs, playlist, song: songs[0] });
+    setIsPlaying(true);
+
+    console.log({ playlist, songs });
+  };
+
+  const iconsClassName = size === 'small' ? 'w-5 h-5' : 'w-7 h-7';
 
   return (
-    <button onClick={handleClick} className="card-play-button rounded-full bg-green-500 p-3
-      hover:scale-[1.0] transition hover:bg-green-400">
-        {isPlayingPlaylist ? <PauseIcon className={iconsClassName}  /> : <PlayIcon className={iconsClassName} /> }
+    <button
+      onClick={handleClick}
+      className="card-play-button rounded-full bg-green-500 p-3 hover:scale-[1.0] transition hover:bg-green-400"
+    >
+      {isPlayingPlaylist ? <PauseIcon className={iconsClassName} /> : <PlayIcon className={iconsClassName} />}
     </button>
-  )
-}
+  );
+};
